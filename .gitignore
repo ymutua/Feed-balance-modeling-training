@@ -48,9 +48,9 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-Users/s2255815/Library/CloudStorage/OneDrive-UniversityofEdinburgh/Work/Projects/AU-IBAR/1st_Spatial modelling workshop/Feed-balance-modeling-training/Day_1/SpatialData/
-Users/s2255815/Library/CloudStorage/OneDrive-UniversityofEdinburgh/Work/Projects/AU-IBAR/1st_Spatial modelling workshop/Feed-balance-modeling-training/Day_2/SpatialData/
-Users/s2255815/Library/CloudStorage/OneDrive-UniversityofEdinburgh/Work/Projects/AU-IBAR/1st_Spatial modelling workshop/Feed-balance-modeling-training/Day_4/src/3Balance-estimates/BurkinaFaso/SpatialData/
-Users/s2255815/Library/CloudStorage/OneDrive-UniversityofEdinburgh/Work/Projects/AU-IBAR/1st_Spatial modelling workshop/Feed-balance-modeling-training/Day_4/src/3Balance-estimates/BurkinaFaso/Results/
-Users/s2255815/Library/CloudStorage/OneDrive-UniversityofEdinburgh/Work/Projects/AU-IBAR/1st_Spatial modelling workshop/Feed-balance-modeling-training/Day_4/src/3Balance-estimates/BurkinaFaso/Plots/
-Users/s2255815/Library/CloudStorage/OneDrive-UniversityofEdinburgh/Work/Projects/AU-IBAR/1st_Spatial modelling workshop/Feed-balance-modeling-training/Day_4/src/3Balance-estimates/BurkinaFaso/QC_checks/
+Day_1/SpatialData/
+Day_2/SpatialData/
+Day_4/src/3Balance-estimates/BurkinaFaso/SpatialData/
+Day_4/src/3Balance-estimates/BurkinaFaso/Results/
+Day_4/src/3Balance-estimates/BurkinaFaso/Plots/
+Day_4/src/3Balance-estimates/BurkinaFaso/QC_checks/
