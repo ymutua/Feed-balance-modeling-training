@@ -1,0 +1,46 @@
+cropID,cropNameSPAM,codeSPAM,nameSPAM_grouped,codeSPAM_grouped,nameGAEZ,codeGAEZ,nameBasket_detail,codeBasket_detail,nameBasket_grouped,codeBasket_grouped,whole,silage,concentrate,BurkinaSPAM,EthiopiaSPAM,SSAfeedBurkina,RahimiBurkina,SSAfeedEthiopia,FeyisaEthiopia
+1,wheat,whea,cereal,cere,wheat,,cereal,cere,cereal_thin,cereThin,1,0,0,0,1,0,0,Wheat straw,1
+2,rice,rice,cereal,cere,rice,,cereal,cere,exclude,excl,0,0,1,1,1,0,0,1,0
+3,maize,maiz,cereal,cere,maize,,cereal,cere,cereal_thick,cereThick,1,1,1,1,1,0,1,Maize stem,1
+4,barley,barl,cereal,cere,other cereals,,cereal,cere,cereal_thin,cereThin,0,0,0,0,1,0,0,Barley straw,1
+5,pearl millet,pmil,cereal,cere,other cereals,,millet,mil,cereal_thick,cereThick,0,0,0,1,1,0,1,Pearl millet stover,0
+6,small millet,smil,cereal,cere,other cereals,,millet,mil,cereal_thick,cereThick,0,0,0,0,1,0,1,Finger millet stover,0
+7,sorghum,sorg,cereal,cere,other cereals,,millet,mil,cereal_thick,cereThick,0,0,0,1,1,0,1,Sorghum stover,1
+8,other cereals,ocer,cereal,cere,other cereals,,cereal,cere,cereal,cere,0,0,0,1,1,0,0,Teff straw,1
+9,potato,pota,exclude,excl,potato and sweet potato,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+10,sweet potato,swpo,roots,root,potato and sweet potato,,sweet potato,swpo,roots,roots,0,1,0,1,1,0,0,Sweet potato vines,0
+11,yams,yams,roots,root,yams and other tubers,,root other,rootO,roots,roots,0,0,0,1,1,0,0,0,0
+12,cassava,cass,roots,root,cassava,,root other,rootO,roots,roots,0,0,0,1,1,0,0,Peel but no ME,0
+13,other roots,orts,roots,root,yams and other tubers,,root other,rootO,roots,roots,0,0,0,1,1,0,0,,0
+14,bean,bean,pulses,puls,pulses,,legume,leg,leg,leg,0,0,0,1,1,0,0,Common bean straw,1
+15,chickpea,chic,pulses,puls,pulses,,legume,leg,leg,leg,0,0,0,0,1,0,0,Chickpea straw,0
+16,cowpea,cowp,pulses,puls,pulses,,legume,leg,leg,leg,0,0,0,1,1,0,0,Cowpea straw,0
+17,pigeonpea,pige,pulses,puls,pulses,,legume,leg,leg,leg,0,0,0,0,0,0,0,Pigeonpea straw,0
+18,lentil,lent,pulses,puls,pulses,,legume,leg,leg,leg,0,0,0,0,1,0,0,Lentil straw,0
+19,other pulses,opul,pulses,puls,pulses,,legume,leg,leg,leg,0,0,0,1,1,0,0,0,1
+20,soybean,soyb,oilcrops,oilc,soybeans,,soy,soy,leg,leg,0,0,1,1,1,0,0,Soyabean straw,0
+21,groundnut,grou,oilcrops,oilc,groundnut,,legume,leg,leg,leg,0,0,0,1,1,0,1,Leaf & stem - no country,0
+22,coconut,cnut,exclude,excl,crop NES,,exclude,excl,exclude,excl,0,0,0,0,1,0,0,NA,0
+23,oilpalm,oilp,exclude,excl,oilpalmfruit,,exclude,excl,exclude,excl,0,0,0,0,0,0,0,NA,0
+24,sunflower,sunf,oilcrops,oilc,sunflower,,oilcrops,oilc,oilcrops,excl,0,0,1,0,0,0,0,0,0
+25,rapeseed,rape,oilcrops,oilc,rapeseed,,oilcrops,oilc,oilcrops,excl,0,0,?,0,1,0,0,0,0
+26,sesameseed,sesa,oilcrops,oilc,crop NES,,oilcrops,oilc,oilcrops,oilc,0,0,0,1,1,0,0,No ME,0
+27,other oil crops,ooil,exclude,excl,crop NES,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+28,sugarcane,sugc,sugar,sugc,sugarcane,,sugarcane,sugc,sugarcane,sugc,0,0,0,1,1,0,0,Sugar cane tops,0
+29,sugarbeet,sugb,roots,root,sugar beet,,root other,rootO,roots,roots,1,0,0,1,0,0,0,0,0
+30,cotton,cott,fibre,fib,cotton,,cotton,cott,exclude,excl,0,0,1,1,1,0,0,NA,0
+31,other fibre crops,ofib,exclude,excl,crop NES,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+32,arabica coffee,acof,exclude,excl,stimulants,,exclude,excl,exclude,excl,0,0,0,0,1,0,0,NA,0
+33,robusta coffee,rcof,exclude,excl,stimulants,,exclude,excl,exclude,excl,0,0,0,0,0,0,0,NA,0
+34,cocoa,coco,exclude,excl,stimulants,,exclude,excl,exclude,excl,0,0,0,1,0,0,0,NA,0
+35,tea,teas,exclude,excl,stimulants,,exclude,excl,exclude,excl,0,0,0,0,1,0,0,NA,0
+36,tobacco,toba,exclude,excl,tobacco,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+37,banana,bana,banana+plantains,banpl,banana,,banana and plantains,banpl,banana and plantains,banpl,0,0,0,0,1,0,0,Banana pseudostem,1
+38,plantain,plnt,banana+plantains,banpl,banana,,banana and plantains,banpl,banana and plantains,banpl,0,0,0,0,1,0,0,Banana pseudostem,1
+39,tropical fruit,trof,exclude,excl,crop NES,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+40,temperate fruit,temf,exclude,excl,crop NES,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+41,vegetables,vege,exclude,excl,crop NES,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+42,rest of crops,rest,exclude,excl,crop NES,,exclude,excl,exclude,excl,0,0,0,1,1,0,0,NA,0
+43,NA,NA,NA,NA,Fodder,?,cut carry fodder,fodcut,cut carry,fodcut,1,1,0,0,,,,,1
+43,NA,NA,NA,NA,Fodder,?,hay,fodhay,hay,fodhay,1,1,0,0,,,,,1
+44,NA,NA,NA,NA,Fodder,?,legume fodder,fodleg,legume,fodleg,1,1,0,0,,,,,1

@@ -1,0 +1,47 @@
+crop#,full_name,codeSPAM,harvest_index,Source,Excluded 
+32,Arabic Coffee,coff,1,NA in Feast,excl
+37,Banana,bana,0.44,Feast,0
+4,Barley,barl,0.534,Feast,0
+14,Bean,bean,0.555,Feast,0
+12,Cassava,cass,0.8696,Feast,0
+15,Chickpea,chic,0.31,Feast,0
+39,Citrus,citr,1,NA in Feast,excl
+34,Cocoa,coco,1,NA in Feast,excl
+22,Coconut,cnut,1,NA in Feast,excl
+30,Cotton,cott,1,NA in Feast,excl
+16,Cowpea,cowp,0.335,Feast,0
+21,Groundnut,grou,0.45,Feast,0
+18,Lentil,lent,0.246,Feast,0
+3,Maize,maiz,0.3785,Feast,0
+23,Oilpalm,oilp,1,NA in Feast,excl
+43,Onion,onio,1,NA in Feast,excl
+8,Other Cereals,ocer,0.188,Pearl millet,0
+31,Other Fibre Crops,ofib,1,NA in Feast,excl
+27,Other Oil Crops,ooil,1,NA in Feast,excl
+19,Other Pulses,opul,0.3,Approximated from other pulses in Feast,0
+13,Other Roots,orts,0.27,From Feast sweet potato,0
+40,Other Tropical Fruit,trof,1,NA in Feast,excl
+44,Other Vegetables,vege,1,NA in Feast,excl
+6,Pearl Millet,pmil,0.188,Feast,0
+17,Pigeon Pea,pige,0.294,Feast,0
+38,Plantain,plnt,0.44,Feast,0
+9,Potato,pota,1,Feast,excl
+25,Rapeseed,rape,0.361,Feast,0
+46,Rest Of Crops,rest,1,NA in Feast,excl
+2,Rice,rice,0.4613,Feast,excl
+33,Robust Coffee,rcof,1,NA in Feast,excl
+45,Rubber,rubb,1,NA in Feast,excl
+26,Sesame Seed,sesa,0.01,,0
+5,Small Millet,mill,0.391,,0
+7,Sorghum,sorg,0.458,,0
+20,Soybean,soyb,0.422,,0
+29,Sugarbeet,sugb,1,NA in Feast,0
+28,Sugarcane,sugc,0.19,Feast,0
+24,Sunflower,sunf,0.32,Feast,excl
+10,Sweet Potato,swpo,0.27,Feast,0
+35,Tea,teas,1,NA in Feast,excl
+41,Temperate Fruit,temf,1,NA in Feast,excl
+36,Tobacco,toba,1,NA in Feast,excl
+42,Tomato,toma,1,NA in Feast,excl
+1,Wheat,whea,0.36575,Feast,0
+11,Yams,yams,0.24102,Feast,0

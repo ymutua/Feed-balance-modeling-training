@@ -1,0 +1,241 @@
+---
+title: "Preprocessing spatial and non-spatial data"
+format: pdf
+editor: visual
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  \usepackage{float}
+  \floatplacement{table}{H}
+  \renewcommand{\thesection}{\Roman{section}}
+---
+
+```{=latex}
+\vspace{-2.5cm}
+```
+### Introduction
+
+This tutorial is designed to guide participants through geo-processing techniques relevant for making raster and tabular data ready for feed balance modelling. Throughout the tutorial, we will introduce participants to a variety of datasets and techniques for handling data.
+
+### Learning outcomes
+
+By the end of this course, participants will be able to:
+
+-   Import raster and tabular data into R
+-   Perform several types of spatial analyses in R and make them ready for feed balance modelling
+
+### R and RStudio
+
+If you plan to follow along with the R coding during the workshop, please ensure that you have the latest versions of R and RStudio installed on your computer.
+
+First, you will need to download and install from <https://cran.r-project.org>.
+
+Next you will need to download and install RStudio from <https://rstudio.com/products/rstudio/download/#download>.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
+```
+
+#### Setting the working directory
+
+We map our working directory to the `Feed-balance-modeling-training` folder we created earlier. We assign the folder the variable name `root`.
+
+```{r echo=F, results='hide', message=FALSE}
+root <- "/home/s2255815/rdrive/AU_IBAR/Feed-balance-modeling-training"
+```
+
+For linux:
+
+```{r eval = FALSE}
+# linux systems
+root <- "/home/Feed-balance-modeling-training"
+```
+
+For Windows system:
+
+```{r eval = FALSE}
+# for windows systems
+root <- "c:/Documents/Feed-balance-modeling-training"
+```
+
+#### Load R packages
+
+To begin, load the "`raster` R package along with a couple of others.
+
+```{r}
+library(ncdf4) # package for netcdf manipulation
+library(raster) # package for raster manipulation
+library(dplyr)
+library(rgdal)
+library(sf)
+library(tidyterra)
+library(ggplot2)
+library(terra)
+library(readr)
+```
+
+We then create outputs folder to store the results.
+
+```{r}
+# output folder
+outdir <- paste0(root, "/Day_2/SpatialData/inputs/Feed_DrySeason/DMP"); dir.create(outdir, F, T)
+```
+
+#### Dry matter productivity
+
+Next we read in the a layer `gadm40_BFA_0.shp` to define the area of interest and list all `.nc` files downloaded in the previous tutorial.
+
+```{r tidy=TRUE}
+# read AOI
+aoi <- read_sf(paste0(root, "/Day_1/SpatialData/inputs/AdminBound/gadm40_BFA_0.shp"))
+
+nc_files <- list.files(paste0(root, "/Day_1/SpatialData/inputs/Feed/DMP"), pattern = ".nc$", full.names = TRUE, recursive = TRUE)
+nc_files
+```
+
+Use `nc_open` function to read and explore one of the datasets.
+
+```{r warning=FALSE, message=FALSE, tidy=TRUE}
+nc_file <- nc_open(paste0(root, "/Day_1/SpatialData/inputs/Feed/DMP/c_gls_DMP300-RT6_202001100000_GLOBE_OLCI_V1.1.2.nc"))
+nc_file
+```
+As shown, the variable is `Dry matter productivity`, provided at a resolution of `333` meters, with units in `kg/hectare/day.
+
+All done exploring the data. We can close the `netCDF` file.
+
+```{r}
+nc_close(nc_file) 
+```
+
+Luckily, the `raster` R package allows us to read `.nc` files. We will loop through the three files, crop them to the area of interest, and save the new files in the results folder.
+
+```{r warning=FALSE, message=FALSE}
+
+lapply(nc_files, function(nc_file){
+  
+  nc_name <- gsub('.{3}$', '', basename(nc_file))
+  
+  iDMP <- raster::raster(nc_file, varname="DMP", ncdf=TRUE)
+  iDMP <- crop(iDMP, extent(aoi))
+  iDMP <- mask(iDMP, aoi)
+  
+  # save as GeoTIFF
+  raster::writeRaster(iDMP, filename = paste0(outdir, "/", nc_name, ".tif"), overwrite=TRUE)
+})
+```
+
+Here is how the layers look like
+
+```{r warning=FALSE, message=FALSE, tidy=TRUE}
+iDMP <- rast(paste0(root, "/Day_2/SpatialData/inputs/Feed_DrySeason/DMP/c_gls_DMP300-RT6_202001310000_GLOBE_OLCI_V1.1.2.tif"))
+
+ggplot() + geom_sf(data = aoi, colour = "black", show.legend = F) +
+  geom_spatraster(data = iDMP) +
+  geom_sf(data = aoi, colour = "black", fill = NA, show.legend = F) +
+  scale_fill_gradient(low = "#CDDF4A", high = "#0BAE1C", na.value = NA, name="DM (kg/hectare/day)")
+```
+
+#### Crop type and distribution
+
+Similarly, we crop the `Crop type and distribution` data to the area of interest and save the new files in the results folder.
+
+We create an outputs folder to store the results.
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+# output folder
+outdir <- paste0(root, "/Day_2/SpatialData/inputs/SPAM2020"); dir.create(outdir, F, T)
+```
+
+Then read the raster properties of the `Dry matter productivity` files to make all other raster files the same in `extent` and `spatial resolution`.
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+dmpTemp <- rast(paste0(root, "/Day_2/SpatialData/inputs/Feed_DrySeason/DMP/c_gls_DMP300-RT6_202001100000_GLOBE_OLCI_V1.1.2.tif"))
+```
+
+We list the files downloaded in the previous session, read them in a loop, crop them to the area of interest, and save the processed files in the results folder. According to the `SPAM2020` documentation, there are three technologies available: `irrigated (R)`, `rainfed (R)`, and `all technologies together (A)`. For this tutorial, we will focus on the `A` technology.
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+sPamfiles <- list.files(paste0(root, "/Day_1/SpatialData/inputs/Feed/CropType/spam2020V0r1_global_physical_area"), pattern = "_A.tif$", full.names = TRUE, recursive = TRUE)
+
+lapply(sPamfiles, function(sPamfile){
+  sPamfile_name <- tolower(gsub('.{4}$', '', basename(sPamfile)))
+  
+  isPamFile <- rast(sPamfile)
+  isPamFile <- crop(isPamFile, ext(dmpTemp))
+  isPamFile <- resample(isPamFile, dmpTemp, method="bilinear")
+  isPamFile <- mask(isPamFile, mask = dmpTemp)
+  
+  isPamFile[is.nan(values(isPamFile))] <- NA
+  
+  names(isPamFile) <- sPamfile_name
+  varnames(isPamFile) <- sPamfile_name
+  
+  # save as GeoTIFF
+  writeRaster(isPamFile, filename = paste0(outdir, "/", sPamfile_name, ".tif"), overwrite=TRUE)
+})
+```
+
+#### Deriving Crop residue fraction
+
+We will derive crop residue fraction layers by combining data on Crop type and distribution` with harvest indices obtained from published sources. 
+
+Since the next process is memory intensive, we will set specific parameters to optimize performance.
+
+```{r}
+rasterOptions(maxmemory = 1e+60)
+rasterOptions(todisk = TRUE)
+```
+
+Read in crop harvest index data.
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+cropHI <- read_csv(paste0(root, "/Day_2/Tables/crop_harvest index.csv"))
+```
+
+Set path to the `SPAM2020` data
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+pathSPAM <- paste0(root, "/Day_2/SpatialData/inputs/SPAM2020")
+pathSPAMInter <- paste0(root, "/Day_2/SpatialData/inputs/SPAM2020/intermediate"); dir.create(pathSPAMInter, F, T)
+```
+
+List the files clipped in the previous session, and stack the together.
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+filesSPAM <- list.files(path = pathSPAM, pattern = "_a.tif$", full.names = T)
+stSPAM <- rast(filesSPAM)
+```
+
+Extract the names of crops listed above using a `regex` function.
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+crops <- sub(".*_a_(.*?)_a\\.tif$", "\\1", filesSPAM)
+```
+
+Calculate total crop area
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+iSPAMcropArea <- app(stSPAM, fun = sum, na.rm = TRUE)
+```
+
+Loop through the crop list, and create residue layer considering harvest index values.
+
+```{r message=FALSE, warning=FALSE, tidy=TRUE}
+for(i in 1: length(crops)){
+  
+   # Extract the relevant SPAM data for the crop
+  tmpCropIndex <- grep(pattern = paste(crops[i], collapse = "|"), names(stSPAM))
+  iSPAMtmpArea <- stSPAM[[tmpCropIndex]]
+  
+  # Adjust crop data based on the harvest index
+  icrop <- stSPAM[[tmpCropIndex]]
+  icrop[icrop >0] <- (1 - cropHI$harvest_index[cropHI$codeSPAM == crops[i]])
+  
+  # Write the adjusted crop data
+  writeRaster(icrop, paste0(pathSPAMInter, "/", crops[i], "_res_frac.tif"), overwrite = T)
+  
+  # Calculate crop proportion and write the output
+  stSPAMcropProp <- iSPAMtmpArea/iSPAMcropArea
+  writeRaster(icrop, paste0(pathSPAMInter, "/", crops[i], "_prop.tif"), overwrite = T)
+}
+```

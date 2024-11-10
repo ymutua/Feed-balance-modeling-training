@@ -1,0 +1,32 @@
+crop#,full_name,codeSPAM,harvest_index,Source,Excluded 
+1,banana,bana,0.44,Feast,0
+2,barley,barl,0.534,Feast,0
+3,bean,bean,0.555,Feast,0
+4,cassava,cass,0.8696,Feast,0
+5,chickpea,chic,0.31,Feast,0
+6,cowpea,cowp,0.335,Feast,0
+7,groundnut,grou,0.45,Feast,0
+8,lentil,lent,0.246,Feast,0
+9,maize,maiz,0.3785,Feast,0
+10,other cereals,ocer,0.188,Pearl millet,0
+11,other pulses,opul,0.3,Approximated from other pulses in Feast,0
+12,other roots,orts,0.27,From Feast sweet potato,0
+13,pearl millet,pmil,0.188,Feast,0
+14,pigeonpea,pige,0.294,Feast,0
+15,plantain,plnt,0.44,Feast,0
+16,potato,pota,1,Feast,excl
+17,rapeseed,rape,0.361,Feast,0
+18,rice,rice,0.4613,Feast,excl
+19,sesameseed,sesa,0.01,Feast,0
+20,small millet,smil,0.391,Feast,0
+21,sorghum,sorg,0.458,Feast,0
+22,soybean,soyb,0.422,Feast,0
+23,sugarbeet,sugb,1,NA in Feast,0
+24,sugarcane,sugc,0.19,Feast,0
+25,sunflower,sunf,0.32,Feast,excl
+26,sweet potato,swpo,0.27,Feast,0
+27,temperate fruit,temf,1,NA in Feast,excl
+28,tropical fruit,trof,1,NA in Feast,excl
+29,vegetables,vege,1,NA in Feast,excl
+30,wheat,whea,0.36575,Feast,cere
+31,yams,yams,0.24102,Feast,root
